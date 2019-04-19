@@ -6,7 +6,7 @@
 /*   By: nkhribec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 13:58:38 by nkhribec          #+#    #+#             */
-/*   Updated: 2019/04/18 18:33:56 by nkhribec         ###   ########.fr       */
+/*   Updated: 2019/04/19 04:33:26 by nkhribec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE
 
 # include <stdlib.h>
-//# include "libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>

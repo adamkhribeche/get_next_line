@@ -6,7 +6,7 @@
 /*   By: nkhribec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 13:57:56 by nkhribec          #+#    #+#             */
-/*   Updated: 2019/04/18 23:13:07 by nkhribec         ###   ########.fr       */
+/*   Updated: 2019/04/19 04:40:11 by nkhribec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		get_next_line(const int fd, char **line)
 	//index = 0;
 	p = *line;
 	read(fd, p++, 1);
-	while (*p != '\n' && *p != EOF)
+	while (*(p - 1) != '\n' && *(p - 1) != EOF)
 	{
 		read(fd, p, 1);
 		p++;
@@ -36,8 +36,8 @@ int main(void)
 	int		fd;
 	char	*line;
 
-	line  = (char*)malloc(1000 * sizeof(*line));
-	fd = open("adam", O_RDWR);
+	line  = (char*)ft_memalloc(1000 * sizeof(*line));
+	fd = open("adam", O_RDONLY);
 	//printf("%d\n", fd);
 	get_next_line(fd, &line);
 	//read(fd, line, 50);
