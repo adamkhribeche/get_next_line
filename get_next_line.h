@@ -6,7 +6,7 @@
 /*   By: nkhribec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 13:58:38 by nkhribec          #+#    #+#             */
-/*   Updated: 2019/04/19 04:33:26 by nkhribec         ###   ########.fr       */
+/*   Updated: 2019/04/19 18:44:22 by nkhribec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+# define BUFF_SIZE 1000
 int		get_next_line(const int fd, char **line);
 #endif
