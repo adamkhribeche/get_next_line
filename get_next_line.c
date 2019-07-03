@@ -6,13 +6,13 @@
 /*   By: nkhribec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 05:30:42 by nkhribec          #+#    #+#             */
-/*   Updated: 2019/05/06 17:01:54 by nkhribec         ###   ########.fr       */
+/*   Updated: 2019/07/03 19:17:52 by nkhribec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int			ft_append_line(char **line, char **s, const int fd)
+int			ft_append_line(char **line, char **s, const int fd)
 {
 	int				len;
 	char			*to_free;
@@ -35,11 +35,14 @@ static int			ft_append_line(char **line, char **s, const int fd)
 	return (1);
 }
 
-static ssize_t		ft_get_untel_newline(char **s, const int fd, char *tmp)
+ssize_t		ft_get_untel_newline(char **s, const int fd)
 {
 	ssize_t			n;
+	char			*tmp;
 	char			*to_free;
 
+	if (!(tmp = (char*)malloc(sizeof(char) * BUFF_SIZE + 1)))
+		return (-1);
 	n = 1;
 	if ((ft_strchr(s[fd], '\n') == NULL))
 	{
@@ -56,20 +59,19 @@ static ssize_t		ft_get_untel_newline(char **s, const int fd, char *tmp)
 	return (n);
 }
 
-int					get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	static char		*s[MAX_FD];
-	char			tmp[BUFF_SIZE + 1];
 	ssize_t			n;
 
 	if (fd < 0 || fd > MAX_FD || !line || BUFF_SIZE < 0)
 		return (-1);
 	if (s[fd] == NULL)
-		s[fd] = ft_memalloc(sizeof(char));
-	n = ft_get_untel_newline(s, fd, tmp);
+		s[fd] = ft_strnew(0);
+	n = ft_get_untel_newline(s, fd);
 	if (n == -1)
 		return (-1);
-	if (n == 0 && (s[fd] == NULL || s[fd][0] == '\0'))
+	if (n == 0 && s[fd][0] == '\0')
 	{
 		ft_strdel(&s[fd]);
 		return (0);
